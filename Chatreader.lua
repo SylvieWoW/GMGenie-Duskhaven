@@ -124,6 +124,7 @@ function ChatFrame_MessageEventHandler(self, event, ...)
             -- New Ticket
             local name, ticketId = string.match(arg1, "^%|cff00ff00New%sticket%sfrom%|r%|cffff00ff%s([a-zA-Z]+).%|r%s%|cff00ff00Ticket%sentry:%|r%|cffff00ff%s([0-9]+).%|r$");
             if name and ticketId then
+				PlaySound("MapPing", "master");
                 if GMGenie.Tickets.isOpen() then
                     GMGenie.Tickets.refresh();
                 end

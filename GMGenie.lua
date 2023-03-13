@@ -60,7 +60,7 @@ function GMGenie.onLoad()
     GMGenie.Tickets.onLoad();
 
     -- Please do not remove the copyright notice, it would be a violation of the gpl.
-    GMGenie.showGMMessage("GMGenie 0.7.3 by Chocochaos ((c) 2011-2014). The latest version of GM Genie can always be found at http://chocochaos.com/gmgenie/");
+    GMGenie.showGMMessage("GMGenie 0.8.0 by Chocochaos ((c) 2011-2014) and |cffbe5effSylvie|cffffffff (2023). The latest version of GM Genie can always be found at https://github.com/SylvieWoW/GMGenie-Duskhaven/");
 end
 
 local frame = CreateFrame("FRAME");

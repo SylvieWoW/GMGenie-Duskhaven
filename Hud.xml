@@ -113,6 +113,7 @@
                     </OnClick>
                 </Scripts>
             </Button>
+			<!-- Removing the Builder Button
             <Button name="$parent_Builder" inherits="GMGenie_Button" text="Builder">
                 <Size>
                     <AbsDimension x="90" y="18"/>
@@ -126,6 +127,7 @@
                     </OnClick>
                 </Scripts>
             </Button>
+			-->
         </Frames>
     </Button>
 </Ui>

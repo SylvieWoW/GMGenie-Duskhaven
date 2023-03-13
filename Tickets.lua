@@ -315,6 +315,8 @@ function GMGenie.Tickets.loadTicket(ticketId, num)
                 --GMGenie_Tickets_View_Ticket_Reading:Hide();
                 -- get ticket
                 SendChatMessage(".ticket viewid " .. ticketId, "GUILD");
+				GMGenie_Tickets_View_ResponseFrame_Frame_Text:SetText("Greetings!\n\n\n\nRegards,\n"..UnitName("Player").."\n\n---Duskhaven Staff---\nWebsite: www.duskhaven.servegame.com\nBug Tracker: https://github.com/Duskhaven/Bug-Reports/issues");
+				GMGenie_Tickets_View_ResponseFrame_Frame_Text:ClearFocus();
                 -- open spy
                 if GMGenie_SavedVars.useSpy then
                     GMGenie.Spy.spy(GMGenie.Tickets.currentTicket["name"]);
@@ -358,14 +360,14 @@ function GMGenie.Tickets.displaySync()
             end
         end
         GMGenie_Tickets_View_Sync_Names:SetText(text);
-        GMGenie_Tickets_View_Ticket:SetHeight(150);
-        GMGenie_Tickets_View_Ticket_Frame:SetHeight(150);
-        GMGenie_Tickets_View_Ticket_Frame_Text:SetHeight(150);
+        GMGenie_Tickets_View_ResponseFrame:SetHeight(127);
+        GMGenie_Tickets_View_ResponseFrame_Frame:SetHeight(127);
+        GMGenie_Tickets_View_ResponseFrame_Frame_Text:SetHeight(127);
         GMGenie_Tickets_View_Sync:Show();
     else
-        GMGenie_Tickets_View_Ticket:SetHeight(173);
-        GMGenie_Tickets_View_Ticket_Frame:SetHeight(173);
-        GMGenie_Tickets_View_Ticket_Frame_Text:SetHeight(173);
+        GMGenie_Tickets_View_ResponseFrame:SetHeight(153);
+        GMGenie_Tickets_View_ResponseFrame_Frame:SetHeight(153);
+        GMGenie_Tickets_View_ResponseFrame_Frame_Text:SetHeight(153);
         GMGenie_Tickets_View_Sync:Hide();
     end
 end
@@ -441,8 +443,7 @@ function GMGenie.Tickets.addLine(message)
 end
 
 function GMGenie.Tickets.delete()
-    SendChatMessage(".ticket close " .. GMGenie.Tickets.currentTicket["ticketId"], "GUILD");
-    SendChatMessage(".ticket del " .. GMGenie.Tickets.currentTicket["ticketId"], "GUILD");
+    SendChatMessage(".ticket complete " .. GMGenie.Tickets.currentTicket["ticketId"], "GUILD");
     GMGenie.Tickets.done = GMGenie.Tickets.done + 1;
     GMGenie_SavedVars.ticketsDone = GMGenie.Tickets.done;
     local offlineCount = GMGenie.Tickets.tickets - GMGenie.Tickets.onlineTickets;
@@ -470,6 +471,19 @@ end
 
 function GMGenie.Tickets.setComment()
     SendChatMessage(".ticket comment " .. GMGenie.Tickets.currentTicket["ticketId"] .. " " .. GMGenie_Tickets_View_Comment:GetText(), "GUILD");
+end
+
+function GMGenie.Tickets.setResponse()
+	response = { string.split("\n",GMGenie_Tickets_View_ResponseFrame_Frame_Text:GetText()) };
+	for n = 1, #response do
+		if response[n] == "" then
+			response[n] = " "
+		end
+		SendChatMessage(".ticket response appendln " .. GMGenie.Tickets.currentTicket["ticketId"] .. " " .. response[n]);
+	end
+	DEFAULT_CHAT_FRAME:AddMessage("Ticket: "..GMGenie.Tickets.currentTicket["ticketId"]..". Response: "..GMGenie_Tickets_View_ResponseFrame_Frame_Text:GetText());
+	GMGenie_Tickets_View_ResponseFrame_Frame_Text:SetText("")
+	
 end
 
 function GMGenie.Tickets.toggleSpy()

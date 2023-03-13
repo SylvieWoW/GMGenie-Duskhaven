@@ -325,7 +325,7 @@
 
     <Button name="GMGenie_Tickets_View" inherits="GMGenie_Window">
         <Size>
-            <AbsDimension x="230" y="235"/>
+            <AbsDimension x="230" y="410"/>
         </Size>
         <Anchors>
             <Anchor point="LEFT" relativeTo="GMGenie_Tickets_Main" relativePoint="RIGHT"/>
@@ -367,7 +367,7 @@
                 <Anchors>
                     <Anchor point="BOTTOM">
                         <Offset>
-                            <AbsDimension x="0" y="42"/>
+                            <AbsDimension x="0" y="65"/>
                         </Offset>
                     </Anchor>
                 </Anchors>
@@ -419,8 +419,54 @@
                     </OnClick>
                 </Scripts>
             </Button>
-
-            <Button name="$parent_Delete" inherits="GMGenie_Button" text='Delete'>
+			<Frame name="$parent_ResponseFrame" enableMouse="true" inherits="GMGenie_Input_TextArea">
+                <Size>
+                    <AbsDimension x="196" y="153"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="5" y="-194"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        GMGenie.loadEditBox(self);
+                        getglobal(self:GetName().."_Frame_Text"):SetAutoFocus(false);
+                        getglobal(self:GetName().."_Frame_Text"):SetScript("OnChar", GMGenie.Tickets.showMessage);
+                    </OnLoad>
+                </Scripts>
+				<EditBox name="$parent_Response" enableMouse="true" inherits="GMGenie_Input_Text" multiline="true">
+					<Size>
+						<AbsDimension x="165" y="18"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="5" y="24"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Scripts>
+					</Scripts>
+				</EditBox>
+            </Frame>
+            <Button name="$parent_SetRespond" inherits="GMGenie_Button" text='Respond'>
+                <Anchors>
+                    <Anchor point="BOTTOMRIGHT">
+                        <Offset>
+                            <AbsDimension x="-5" y="44"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        GMGenie.Tickets.setResponse();
+                    </OnClick>
+                </Scripts>
+            </Button>
+            <Button name="$parent_Delete" inherits="GMGenie_Button" text='Complete'>
                 <Anchors>
                     <Anchor point="BOTTOMLEFT">
                         <Offset>

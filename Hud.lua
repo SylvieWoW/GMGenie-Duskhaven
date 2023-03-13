@@ -160,7 +160,7 @@ function GMGenie.Hud.setSpeed()
     if UnitName("target") == UnitName("player") or UnitName("target") == nil then
         local speed = GMGenie_Hud_Speed:GetText();
         GMGenie_Hud_Speed:ClearFocus();
-        SendChatMessage(".mod speed all " .. speed, "GUILD");
+        SendChatMessage(".mod speed " .. speed .. " all", "GUILD");
     else
         GMGenie.showGMMessage("Be sure to target yourself before setting the speed.");
     end

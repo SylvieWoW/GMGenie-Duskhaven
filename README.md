@@ -95,6 +95,16 @@ It's not a requirement to inform me, but I would appreciate it =)
 Changelog
 -------
 
+### Version 0.8.0
+
+*   Changes for Duskhaven
+    -   Plays a sound when a new ticket arrives
+    -   Adds a multi-line response frame
+    -   Pre-fills the response frame
+    -   Disables the Builder button
+    -   Fixes speed syntax
+	-	Changed "Close/Delete" to "Complete"
+
 ### Version 0.7.3
 
 *   Small changes and fixes:
